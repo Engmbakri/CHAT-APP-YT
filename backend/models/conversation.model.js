@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+
 const conversationSchema = new mongoose.Schema({
 	participants: [
 		{
@@ -12,7 +14,10 @@ const conversationSchema = new mongoose.Schema({
 			default: [], // Default is an empty array
 		}
 	]
-}, {timestamps: true}); // Adds createdAt and updatedAt fields automatically
+}, 
+	// Adds createdAt and updatedAt fields automatically
+	{timestamps: true }
+);
 
 const Conversation = mongoose.model("Conversation", conversationSchema);
 
