@@ -1,3 +1,5 @@
+import GenderCheckbox from "./GenderCheckbox";
+
 const SignUp = () => {
         return <div className='flex flex-col items-center justify-center min-w-96 mx-auto'>
 	  <div className='w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
@@ -34,9 +36,9 @@ const SignUp = () => {
                   <input type='password' placeholder='Confirm Password' className='w-full input input-bordered h-10'/>
                 </div>
 
-		{/* Gender Check Box Goes Here */}
+                <GenderCheckbox />
 	        
-	        <a className='text-sm hover:underline hover:text-blue-600 mt-4 inline-block' href='#'>
+	        <a className='text-sm hover:underline hover:text-blue-600 mt-2 inline-block' href='#'>
 		  Already have an account?
 		</a>
 
