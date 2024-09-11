@@ -3,7 +3,7 @@ const GenderCheckbox = () => {
 		<div className='flex'>
 			<div className='form-control'>
 				<label className={`label gap-2 cursor-pointer`}>
-					<span className='label-text'>Male</span>
+					<span className='text-base text-black'>Male</span>
 					<input
 						type='checkbox'
 						className='checkbox border-slate-900'
@@ -12,7 +12,7 @@ const GenderCheckbox = () => {
 			</div>
 			<div className='form-control'>
 				<label className={`label gap-2 cursor-pointer`}>
-					<span className='label-text'>Female</span>
+					<span className='text-base text-black'>Female</span>
 					<input
 						type='checkbox'
 						className='checkbox border-slate-900'
