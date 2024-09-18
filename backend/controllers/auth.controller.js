@@ -2,10 +2,23 @@ import bcrypt from "bcryptjs";
 import User from "../models/user.model.js";
 import generateTokenAndSetCookie from "../utils/generateToken.js";
 
+// Regular expression for validating email
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export const signup = async (req, res) => {
 	try {
-		console.log("Recived Signup data : ", req.body);
-		const { fullName, username, password, confirmPassword, gender } = req.body;
+		const { fullName, username, password, confirmPassword, email, gender } = req.body;
+
+		// Validate email format
+		if (!emailRegex.test(email)) {
+			return res.status(400).json({ error: "Invalid email format" });
+		}
+
+		// Check if email is already in use
+		const existingEmailUser = await User.findOne({ email });
+		if (existingEmailUser) {
+			return res.status(400).json({ error: "Email already in use" });
+		}
 
 		if (password !== confirmPassword) {
 			return res.status(400).json({ error: "Passwords don't match" });
@@ -30,6 +43,7 @@ export const signup = async (req, res) => {
 			fullName,
 			username,
 			password: hashedPassword,
+			email,
 			gender,
 			profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
 		});
@@ -43,6 +57,7 @@ export const signup = async (req, res) => {
 				_id: newUser._id,
 				fullName: newUser.fullName,
 				username: newUser.username,
+				email: newUser.email,
 				profilePic: newUser.profilePic,
 			});
 		} else {
